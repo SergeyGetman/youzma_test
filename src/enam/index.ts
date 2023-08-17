@@ -1,5 +1,6 @@
 export enum CustomTextEnum {
   textMessageAdd = 'Data has been added',
+  textMessage = 'Data has been added',
   openModal = 'Open modal',
   susses = 'SUSSES',
   errors = 'ERROR',

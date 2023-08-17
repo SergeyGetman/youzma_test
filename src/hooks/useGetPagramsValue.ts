@@ -8,7 +8,7 @@ export const useGetPagramsValue = (arr: IProduct[] | any) => {
     if (arr) {
       const paramsUpdate = arr?.map((el: any) => {
         return {
-          id: el.id.toString(),
+          id: el.id,
           title: el.title,
           description: el.description,
           price: el.price,

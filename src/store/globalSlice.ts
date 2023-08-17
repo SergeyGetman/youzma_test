@@ -1,12 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { AccountPagesState, IProduct } from '../types';
-import { CustomStepperEnum } from '../enam';
 
 export const sliceAccountPages = createSlice({
   name: 'accountPages',
   initialState: {
     status: 0,
-    count: CustomStepperEnum.stepZero as CustomStepperEnum,
+    count: 0,
     globalArrayAccount: [] as IProduct[],
   } as AccountPagesState,
 
@@ -20,12 +19,14 @@ export const sliceAccountPages = createSlice({
     getStatus(state, action) {
       state.status = action.payload;
     },
+    addSteper(state, action) {
+      state.count = action.payload;
+    },
     addFromForm(state, action) {
-      const updateArray = Object.entries(action.payload);
-      state.globalArrayAccount = [...state.globalArrayAccount, ...updateArray];
+      state.globalArrayAccount.push(action.payload);
     },
   },
 });
 
 export default sliceAccountPages.reducer;
-export const { removeLastTodo, addDataPages, getStatus, addFromForm } = sliceAccountPages.actions;
+export const { removeLastTodo, addDataPages, getStatus, addFromForm, addSteper } = sliceAccountPages.actions;

@@ -6,9 +6,14 @@ export const WindowModalStyle = styled(Typography)(() => ({
   left: '50%',
   transform: 'translate(-50%, -50%)',
 
-  height: '30vh',
-  backgroundColor: '#edeaf2',
-  border: '2px solid #000',
+  height: '50vh',
+  width: '100vh',
+  backgroundImage: 'url(https://i.pinimg.com/originals/24/ae/3a/24ae3a446a327998d404729123ea4be0.jpg)',
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+
+  border: '3px solid black',
 }));
 
 export const WindowForButtonStyle = styled(Box)(() => ({

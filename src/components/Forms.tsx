@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField, Grid, Button, Box } from '@mui/material';
@@ -8,32 +8,39 @@ import { ButtonElement } from './button/ButtonElement';
 import { CustomTextEnum } from '../enam';
 import { useDispatch } from 'react-redux';
 import { addFromForm } from '../store/globalSlice';
+import { toast, ToastContainer } from 'react-toastify';
 
 export const Forms = () => {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(true);
+
+  const notify = () => toast(CustomTextEnum.textMessage);
 
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     mode: 'onSubmit',
     defaultValues: {
       title: '',
       autor: '',
-      year: null,
-      rating: '',
+      year: '' || null || undefined,
+      rating: '' || null || undefined,
     },
     resolver: yupResolver(validationSchema),
   });
 
-  const handleFormSubmit = (data) => {
+  const handleFormSubmit = (data: any) => {
     if (data) {
-      dispatch(addFromForm(data, data));
+      dispatch(addFromForm(data));
+      reset();
+      setShowModal(false);
     }
   };
 
-  return (
+  return showModal ? (
     <FormStyle>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={1}>
@@ -89,7 +96,6 @@ export const Forms = () => {
                   {...field}
                   label="Rating"
                   type="number"
-                  step={0.1}
                   error={!!errors.rating}
                   helperText={errors.rating?.message}
                 />
@@ -97,13 +103,15 @@ export const Forms = () => {
             />
           </Grid>
         </Grid>
-        <Box sx={{ margin: '10px 225px' }}>
-          <Button type="submit" variant="outlined">
+        <Box sx={{ margin: '300px auto' }}>
+          <Button type="submit" variant="contained" onClick={notify}>
             {CustomTextEnum.Submit}
           </Button>
         </Box>
       </form>
     </FormStyle>
+  ) : (
+    <ToastContainer />
   );
 };
 

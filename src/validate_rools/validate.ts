@@ -5,12 +5,8 @@ export const validationSchema = yup.object().shape({
   autor: yup.string().required('Autor is required'),
   year: yup.number().required('Year is required').integer('Year must be an integer'),
   rating: yup
-    .mixed()
+    .number()
     .required('Rating is required')
-    .test('is-number-0-5', 'Rating must be a number between 0 and 5', (value) => {
-      if (typeof value === 'string') {
-        return value >= 0 && value <= 5;
-      }
-      return false;
-    }),
+    .min(0, 'Rating must be at least 0')
+    .max(5, 'Rating must be at most 5'),
 });
