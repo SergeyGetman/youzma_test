@@ -5,7 +5,8 @@ export const WindowModalStyle = styled(Typography)(() => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '400px',
-  backgroundColor: 'background.paper',
+
+  height: '30vh',
+  backgroundColor: '#edeaf2',
   border: '2px solid #000',
 }));

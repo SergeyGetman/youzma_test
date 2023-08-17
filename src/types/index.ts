@@ -25,8 +25,11 @@ export interface AccountPagesState {
   globalArrayAccount: IProduct[];
 }
 
+type IVariant = 'contained' | 'text' | 'outlined';
+
 export interface IButtonProps {
   text: string;
+  variant: IVariant;
   handleClick: () => void;
 }
 export interface IMainContain {

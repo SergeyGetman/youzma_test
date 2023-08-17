@@ -10,7 +10,7 @@ import { AccountPagesState } from '../types';
 const AddPage = () => {
   const notify = () => toast('Wow so easy!');
   const [showNotif, setShowNotif] = useState(false);
-  const stat = useSelector((state: AccountPagesState | any) => state.globalState.status);
+  const { status } = useSelector((state: AccountPagesState | any) => state.globalState);
 
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const AddPage = () => {
       //@ts-ignore
       dispatch(addDataPages(response.data, response));
     });
-    if (stat === '200') {
+    if (status === 200) {
       setShowNotif(true);
     }
   }, [dispatch, showNotif]);

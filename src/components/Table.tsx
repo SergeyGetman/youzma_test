@@ -7,17 +7,7 @@ import { TablePagination } from '@mui/material';
 
 export const Table: FC<IDataTable> = ({ arr }) => {
   const rowArrays = useSelector((state: AccountPagesState | any) => state.globalState.globalArrayAccount);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
   const columns: GridColDef[] = [
     {
       field: 'id',
@@ -44,8 +34,6 @@ export const Table: FC<IDataTable> = ({ arr }) => {
 
   const { updateArray } = useGetPagramsValue(rowArrays);
 
-  console.log('paramsUpdate', updateArray);
-
   return (
     <>
       <DataGrid
@@ -58,15 +46,6 @@ export const Table: FC<IDataTable> = ({ arr }) => {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
-      />
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={updateArray.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </>
   );

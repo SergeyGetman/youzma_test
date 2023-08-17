@@ -20,8 +20,14 @@ export const sliceAccountPages = createSlice({
     getStatus(state, action) {
       state.status = action.payload;
     },
+    addFromForm(state, action) {
+      const updateArray = Object.entries(action.payload);
+      state.globalArrayAccount = [...state.globalArrayAccount, ...updateArray];
+      console.log('state', { ...state });
+      console.log('ACTION', action);
+    },
   },
 });
 
 export default sliceAccountPages.reducer;
-export const { removeLastTodo, addDataPages, getStatus } = sliceAccountPages.actions;
+export const { removeLastTodo, addDataPages, getStatus, addFromForm } = sliceAccountPages.actions;

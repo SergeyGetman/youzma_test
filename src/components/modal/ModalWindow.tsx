@@ -1,16 +1,30 @@
 import React from 'react';
-import { Box, Button, Modal, Typography } from '@mui/material';
+import { Modal } from '@mui/material';
 import { ButtonElement } from '../button/ButtonElement';
 import { WindowModalStyle } from './ModalWindow.style';
+import { useNavigate } from 'react-router-dom';
+import Forms from '../Forms';
+import { CustomButtonTextEnum, CustomTextEnum } from '../../enam';
 
 export const ModalWindow = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const navigate = useNavigate();
+
+  const handleChangeStepMinus = () => {
+    navigate('/');
+  };
+
   return (
     <>
-      <ButtonElement text="Open modal" handleClick={handleOpen} />
+      <ButtonElement text={CustomTextEnum.openModal} handleClick={handleOpen} variant="outlined" />
+      <ButtonElement
+        text={CustomButtonTextEnum.titlePrev}
+        handleClick={handleChangeStepMinus}
+        variant="outlined"
+      />
       <Modal
         open={open}
         onClose={handleClose}
@@ -18,12 +32,7 @@ export const ModalWindow = () => {
         aria-describedby="modal-modal-description"
       >
         <WindowModalStyle>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <Forms />
         </WindowModalStyle>
       </Modal>
     </>

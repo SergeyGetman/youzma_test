@@ -2,26 +2,31 @@ import './Index.style';
 import { HeaderAppStyle } from './Index.style';
 import AddPage from './components/AddPage';
 import AdditionalInfo from './components/AdditionalInfo';
-import ModalWindow from './components/modal/ModalWindow';
-import { CustomStepperEnum } from './enam';
+import { CustomButtonTextEnum } from './enam';
 import { useSelector } from 'react-redux';
 import { AccountPagesState } from './types';
+import { ButtonElement } from './components/button/ButtonElement';
+import { useNavigate } from 'react-router-dom';
 
 export const App = () => {
   const stepper = useSelector((state: AccountPagesState | any) => state.globalState.count);
 
+  const navigate = useNavigate();
+  const handleChangeStep = () => {
+    navigate('/add');
+  };
+
   return (
     <>
-      {stepper === CustomStepperEnum.stepZero ? (
-        <HeaderAppStyle step={stepper}>
-          <AddPage />
-          <AdditionalInfo />
-        </HeaderAppStyle>
-      ) : (
-        <>
-          <ModalWindow />
-        </>
-      )}
+      <HeaderAppStyle step={stepper}>
+        <AddPage />
+        <AdditionalInfo />
+        <ButtonElement
+          text={CustomButtonTextEnum.titleNext}
+          handleClick={handleChangeStep}
+          variant="contained"
+        />
+      </HeaderAppStyle>
     </>
   );
 };
