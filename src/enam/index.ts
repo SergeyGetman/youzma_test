@@ -1,9 +1,10 @@
 export enum CustomTextEnum {
-  textMessageAdd = 'add new title',
+  textMessageAdd = 'Data has been added',
   openModal = 'Open modal',
   susses = 'SUSSES',
   errors = 'ERROR',
   Submit = 'Submit',
+  Notification = 'Notification',
 }
 export enum CustomStepperEnum {
   stepZero = 0,
@@ -13,4 +14,9 @@ export enum CustomStepperEnum {
 export enum CustomButtonTextEnum {
   titleNext = 'NEXT',
   titlePrev = 'PREV',
+}
+
+export enum CustomEnumPath {
+  home = '/',
+  modalWindow = '/add',
 }

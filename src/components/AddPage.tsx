@@ -6,9 +6,10 @@ import { getTransports } from '../api/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addDataPages, getStatus } from '../store/globalSlice';
 import { AccountPagesState } from '../types';
+import { CustomTextEnum } from '../enam';
 
 const AddPage = () => {
-  const notify = () => toast('Wow so easy!');
+  const notify = () => toast(CustomTextEnum.textMessageAdd);
   const [showNotif, setShowNotif] = useState(false);
   const { status } = useSelector((state: AccountPagesState | any) => state.globalState);
 
@@ -16,20 +17,20 @@ const AddPage = () => {
 
   useEffect(() => {
     getTransports().then((response) => {
-      const status = response.status;
+      const statusResponce = response.status;
       //@ts-ignore
       dispatch(getStatus(status, response.status));
       //@ts-ignore
       dispatch(addDataPages(response.data, response));
+      if (statusResponce == 200) {
+        setShowNotif(true);
+      }
     });
-    if (status === 200) {
-      setShowNotif(true);
-    }
   }, [dispatch, showNotif]);
   return (
     <>
-      <ButtonElement onClick={notify}>Notify!</ButtonElement>
-      {showNotif ?? <ToastContainer />}
+      <ButtonElement onClick={notify}>{CustomTextEnum.Notification}</ButtonElement>
+      {showNotif && <ToastContainer />}
     </>
   );
 };
