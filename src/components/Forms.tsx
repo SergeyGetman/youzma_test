@@ -34,6 +34,7 @@ export const Forms = () => {
 
   const handleFormSubmit = (data: any) => {
     if (data) {
+      //@ts-ignore
       dispatch(addFromForm(data));
       reset();
       setShowModal(false);

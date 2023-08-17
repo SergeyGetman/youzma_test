@@ -1,12 +1,16 @@
 import * as yup from 'yup';
+import { NotificationValidationEnum } from '../enam';
 
 export const validationSchema = yup.object().shape({
-  title: yup.string().required('Title is required'),
-  autor: yup.string().required('Autor is required'),
-  year: yup.number().required('Year is required').integer('Year must be an integer'),
+  title: yup.string().required(NotificationValidationEnum.titleField),
+  autor: yup.string().required(NotificationValidationEnum.titleAuthorField),
+  year: yup
+    .number()
+    .required(NotificationValidationEnum.titleYearField)
+    .integer(NotificationValidationEnum.titleTearInteger),
   rating: yup
     .number()
-    .required('Rating is required')
-    .min(0, 'Rating must be at least 0')
-    .max(5, 'Rating must be at most 5'),
+    .required(NotificationValidationEnum.titleRaiting)
+    .min(0, NotificationValidationEnum.minValue)
+    .max(5, NotificationValidationEnum.maxValue),
 });
