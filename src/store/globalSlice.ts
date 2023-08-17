@@ -23,8 +23,6 @@ export const sliceAccountPages = createSlice({
     addFromForm(state, action) {
       const updateArray = Object.entries(action.payload);
       state.globalArrayAccount = [...state.globalArrayAccount, ...updateArray];
-      console.log('state', { ...state });
-      console.log('ACTION', action);
     },
   },
 });
