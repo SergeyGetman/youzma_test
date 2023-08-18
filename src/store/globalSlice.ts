@@ -27,9 +27,6 @@ export const sliceAccountPages = createSlice({
       state.globalArrayAccount.push(action.payload);
     },
     findSearch(state, action) {
-      console.log('this is state', { ...state });
-      console.log('this is action', action);
-
       if (!action.payload) {
         state.searchResults = [];
         return state;

@@ -14,7 +14,6 @@ import SearchField from './components/SearcField';
 export const App = () => {
   const stepper = useSelector((state: AccountPagesState | any) => state.globalState.count);
   const dispatch = useDispatch();
-  console.log('this is stepper', stepper);
 
   const navigate = useNavigate();
 
