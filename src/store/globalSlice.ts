@@ -7,6 +7,7 @@ export const sliceAccountPages = createSlice({
     status: 0,
     count: 0,
     globalArrayAccount: [] as IProduct[],
+    searchResults: [] as IProduct[],
   } as AccountPagesState,
 
   reducers: {
@@ -25,8 +26,25 @@ export const sliceAccountPages = createSlice({
     addFromForm(state, action) {
       state.globalArrayAccount.push(action.payload);
     },
+    findSearch(state, action) {
+      console.log('this is state', { ...state });
+      console.log('this is action', action);
+
+      if (!action.payload) {
+        state.searchResults = [];
+        return state;
+      }
+
+      const findUsers = state.originalGlobalArrayAccount.filter((objelem: any) =>
+        objelem.brand.toLowerCase().startsWith(action.payload.toLowerCase()),
+      );
+
+      state.searchResults = findUsers;
+      return state;
+    },
   },
 });
 
 export default sliceAccountPages.reducer;
-export const { removeLastTodo, addDataPages, getStatus, addFromForm, addSteper } = sliceAccountPages.actions;
+export const { removeLastTodo, addDataPages, getStatus, addFromForm, addSteper, findSearch } =
+  sliceAccountPages.actions;

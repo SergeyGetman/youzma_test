@@ -9,6 +9,7 @@ import { ButtonElement } from './components/button/ButtonElement';
 import { useNavigate } from 'react-router-dom';
 import { addSteper } from './store/globalSlice';
 import { useCallback } from 'react';
+import SearchField from './components/SearcField';
 
 export const App = () => {
   const stepper = useSelector((state: AccountPagesState | any) => state.globalState.count);
@@ -26,6 +27,7 @@ export const App = () => {
   return (
     <>
       <HeaderAppStyle step={stepper}>
+        <SearchField />
         <AddPage />
         <AdditionalInfo />
         <ButtonElement text={CustomButtonTextEnum.titleNext} handleClick={handleCall} variant="contained" />

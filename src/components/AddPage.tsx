@@ -12,6 +12,8 @@ const AddPage = () => {
   const notify = () => toast(CustomTextEnum.textMessageAdd);
   const [showNotif, setShowNotif] = useState(false);
   const { status } = useSelector((state: AccountPagesState | any) => state.globalState);
+  const st = useSelector((state) => console.log('this is state222', state));
+  console.log(st);
 
   const dispatch = useDispatch();
 

@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux';
 import { TablePagination } from '@mui/material';
 
 export const Table: FC<IDataTable> = ({ arr }) => {
-  const rowArrays = useSelector((state: AccountPagesState | any) => state.globalState.globalArrayAccount);
+  const rowArrays = useSelector((state: AccountPagesState | any) => {
+    return state.globalState.searchResults.length > 0
+      ? state.globalState.searchResults
+      : state.globalState.globalArrayAccount;
+  });
 
   const columns: GridColDef[] = [
     {
