@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TextField, Grid, Button, Box } from '@mui/material';
@@ -13,7 +13,6 @@ import { toast, ToastContainer } from 'react-toastify';
 export const Forms = () => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(true);
-
   const notify = () => toast(CustomTextEnum.textMessage);
 
   const {
@@ -34,9 +33,9 @@ export const Forms = () => {
 
   const handleFormSubmit = (data: any) => {
     if (data) {
-      //@ts-ignore
       dispatch(addFromForm(data));
       reset();
+      notify();
       setShowModal(false);
     }
   };
@@ -105,7 +104,7 @@ export const Forms = () => {
           </Grid>
         </Grid>
         <Box sx={{ margin: '300px auto' }}>
-          <Button type="submit" variant="contained" onClick={notify}>
+          <Button type="submit" variant="contained">
             {CustomTextEnum.Submit}
           </Button>
         </Box>

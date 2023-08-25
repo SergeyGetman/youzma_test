@@ -20,15 +20,13 @@ const AddPage = () => {
   useEffect(() => {
     getTransports().then((response) => {
       const statusResponce = response.status;
-      //@ts-ignore
       dispatch(getStatus(status, response.status));
-      //@ts-ignore
       dispatch(addDataPages(response.data, response));
       if (statusResponce == 200) {
         setShowNotif(true);
       }
     });
-  }, [dispatch, showNotif]);
+  }, []);
   return (
     <>
       <ButtonElement onClick={notify}>{CustomTextEnum.Notification}</ButtonElement>

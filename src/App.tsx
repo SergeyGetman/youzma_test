@@ -18,7 +18,6 @@ export const App = () => {
   const navigate = useNavigate();
 
   const handleCall = useCallback(() => {
-    //@ts-ignore
     dispatch(addSteper(stepper + 1));
     navigate('/add');
   }, [stepper]);
